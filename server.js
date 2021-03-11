@@ -1,27 +1,21 @@
-const {response} = require('express');
+//defines express
 const express = require('express');
 const app = express();
+
+//defines the port
 const PORT = process.env.PORT || 3000;
+
+//Gives the server access to the public folder's static files
 app.use(express.static('public'));
-app.get('./notes.html', getNotes);
-app.get('./index.html', getIndex);
 
-app.get('/api/notes', (request, response) => {
-    response.json('./db/db.json');
-})
+//allows the app to use JSON parsing
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-app.post('/api/notes', (request, response) => {
-    console.log(request.body);
-    response.json('./db/db.json');
-})
+//access to the Routes
+require('./Routes/apiroute');
+require('./Routes/contentrout');
 
-function getNotes(){
-    response.status(200).sendFile('./public/notes.html')
-}
-
-function getIndex(){
-    response.status(200).sendFile('./public/index.html')
-}
-
+//listens for the port
 app.listen(PORT, () =>
-    console.log(`It Work. ${PORT}`))
+    console.log(`Listening on Port: ${PORT}`))
