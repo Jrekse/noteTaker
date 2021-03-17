@@ -12,6 +12,8 @@ app.use(express.static('public'));
 //allows the app to use JSON parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+//this part is a problem
 app.use('/', htmlroutes)
 app.use('/api', apiroutes)
 

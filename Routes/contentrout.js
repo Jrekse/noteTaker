@@ -1,12 +1,13 @@
 const path = require('path')
+const router = require('express').Router()
 
-module.exports = (app) => {
 
-    app.get('/notes', (request, response) => {
+    router.get('/notes', (request, response) => {
+        console.log('content route')
         response.sendFile(path.join(__dirname, '../public/notes.html'))
     })
 
-    app.get('*', (request, response) => {
+    router.get('/', (request, response) => {
         response.sendFile(path.join(__dirname, '../public/index.html'))
     })
-}
+module.exports = router
