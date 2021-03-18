@@ -1,6 +1,10 @@
 const savedNote = require('../db/db.json');
 const fs = require('fs');
 const router = require('express').Router()
+const { v4: uuidv4 } = require('uuid');
+
+
+
 
 
 
@@ -13,7 +17,11 @@ const router = require('express').Router()
 
     //takes the note input and posts it to the server
     router.post('/notes', (request, response) => {
-        savedNote.push(request.body)
+        const newNote = {
+            ...request.body, 
+            id: uuidv4(),
+        };
+        savedNote.push(newNote)
         try {
             fs.writeFileSync('./db/db.json', JSON.stringify(savedNote, null, 4))
             response.json(true)
@@ -25,6 +33,7 @@ const router = require('express').Router()
 
     //
     router.delete('/notes/:id', (request, response) => {
+        console.log("im", request.params.id)
         let deleteIndex = -1
         savedNote.forEach((note, index) => {
             if (note.id === request.params.id) {
@@ -32,6 +41,8 @@ const router = require('express').Router()
             }
         })
         savedNote.splice(deleteIndex, 1)
+        console.log("deleteI",deleteIndex)
+        console.log("saveNote",savedNote)
         try {
             fs.writeFileSync('./db/db.json', JSON.stringify(savedNote, null, 4))
             response.json(true)
