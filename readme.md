@@ -13,4 +13,12 @@ My biggest problem with this project was getting the API route to call. I spent 
 # Meat and Potatoes 
 
 ![alt text](serverjs.png)
-![alt text](http://serverjs.png)
+The image above is the server and route connection, this page was easy to write because of the extensive practice doing it in class.
+![alt text](jsonpkg.png)
+The json package was a copy paste from a class activity, however i had to install the uuid npm in order to create random id's for each note so that it can be deleted properly
+![alt text](htmlroute.png)
+The html route was very simple and straight forward, the html was already made and there is a lot of documentation online that helped make it
+![alt text](apiroute.png)
+the api route was much more complicated because the app had to have several functions and each of those had to have some form of safety net like a try/catch method. There is a get, post, and delete methods for the user to interact with the webpage.
+![alt text](dbjson.png)
+this is what a saved note looks like in the .json, the id is generated using the uuid npm
